@@ -34,6 +34,7 @@ struct DetailView: View {
         .alert(isPresented: $showingAlert, content: {
             Alert(title: Text("Country Name"), message: Text("The country is \(country.name.uppercased())"), dismissButton: .cancel(Text("OK")))
         })
+        //.navigationTitle("\(country.name)")
     }
 }
 
@@ -46,6 +47,7 @@ struct GradientBackgroundStyle: ButtonStyle {
             .background(LinearGradient(gradient: Gradient(colors: [Color.green, Color.orange]), startPoint: .leading, endPoint: .trailing))
             .cornerRadius(40)
             .padding(.horizontal, 20)
+            .scaleEffect(configuration.isPressed ? 0.85 : 1.0)
     }
 }
 
