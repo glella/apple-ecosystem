@@ -17,6 +17,7 @@ class ViewController: UITableViewController {
         // Do any additional setup after loading the view.
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(promptForAnswer))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(startGame))
         
         if let startWordsURL = Bundle.main.url(forResource: "start", withExtension: "txt") {
             // try? means "call this code, and if it throws an error just send me back nil instead."
@@ -32,7 +33,7 @@ class ViewController: UITableViewController {
         startGame()
     }
     
-    func startGame() {
+    @objc func startGame() {
         title = allWords.randomElement()
         usedWords.removeAll(keepingCapacity: true)
         tableView.reloadData()
@@ -68,41 +69,43 @@ class ViewController: UITableViewController {
         present(ac, animated: true)
     }
     
-    
-    // horrible & convoluted
     func submit(_ answer: String) {
         
         let lowerAnswer = answer.lowercased()
         
-        let errorTitle: String
-        let errorMessage: String
+        //let errorTitle: String
+        //let errorMessage: String
+        
+        if title?.lowercased() == lowerAnswer {
+            showErrorMessage(errTitle: "Same as original word", errMessage: "Cannot use the same word as the original")
+            return
+        }
         
         if isPossible(word: lowerAnswer){
             if isOriginal(word: lowerAnswer) {
                 if isReal(word: lowerAnswer) {
-                    usedWords.insert(answer, at: 0)
+                    usedWords.insert(lowerAnswer, at: 0)
                     
                     let indexPath = IndexPath(row: 0, section: 0)
                     tableView.insertRows(at: [indexPath], with: .automatic)
-                    return
+                    //return
                 } else {
-                    errorTitle = "Word not recognised"
-                    errorMessage = "You can't just make them up"
+                    showErrorMessage(errTitle: "Word not recognised", errMessage: "You can't just make them up")
                 }
             } else {
-                errorTitle = "Word used already"
-                errorMessage = "Be more original!"
+                showErrorMessage(errTitle: "Word used already", errMessage: "Be more original")
             }
         } else {
             guard let title = title?.lowercased() else { return }
-            errorTitle = "Word not possible"
-            errorMessage = "You can't spell that word from \(title)"
+            showErrorMessage(errTitle: "Word not possible", errMessage: "You can't spell that word from \(title)")
         }
         
-        let ac = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: .alert)
+    }
+    
+    func showErrorMessage(errTitle: String, errMessage: String) {
+        let ac = UIAlertController(title: errTitle, message: errMessage, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
         present(ac, animated: true)
-        
     }
     
     // is the word possible, is it original, and is it real?
@@ -126,6 +129,10 @@ class ViewController: UITableViewController {
     
     // spell checker!!! - Awesome but convoluted! Who would THINK of using "rangeOfMisspelledWord" without reading the docs?
     func isReal(word: String) -> Bool {
+        // no snawers shorter than 3 letters
+        if word.utf16.count < 3 {
+            return false
+        }
         
         let checker = UITextChecker()
         let range = NSRange(location: 0, length: word.utf16.count) // Wow! Confusing usage of utf16
