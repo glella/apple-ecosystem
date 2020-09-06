@@ -101,7 +101,13 @@ class ViewController: UITableViewController {
         }
         
     }
+     
+
     
+    /// Shows error alert - cmd + option + / before function =>  autogenerates its docs
+    /// - Parameters:
+    ///   - errTitle: Title of the alert
+    ///   - errMessage: message of the alert
     func showErrorMessage(errTitle: String, errMessage: String) {
         let ac = UIAlertController(title: errTitle, message: errMessage, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
@@ -109,6 +115,7 @@ class ViewController: UITableViewController {
     }
     
     // is the word possible, is it original, and is it real?
+    
     func isPossible(word: String) -> Bool {
         //if it exists, where? firstIndex(of:) - so we can remove it and keep checking in a loop
         guard var tempWord = title?.lowercased() else { return false }
