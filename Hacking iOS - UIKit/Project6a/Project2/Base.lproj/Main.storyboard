@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HCR-d5-YRd">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17124"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Project2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O3o-74-qQR">
+                                <rect key="frame" x="107" y="100" width="200" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="O3o-74-qQR" secondAttribute="height" multiplier="2:1" id="MwH-6u-ZPq"/>
+                                </constraints>
+                                <state key="normal" image="us"/>
+                                <connections>
+                                    <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NLw-T8-aBA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pKe-6s-TwO">
+                                <rect key="frame" x="107" y="230" width="200" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="pKe-6s-TwO" secondAttribute="height" multiplier="2:1" id="CNQ-4L-XIo"/>
+                                </constraints>
+                                <state key="normal" image="us"/>
+                                <connections>
+                                    <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1iQ-bH-4uv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hOL-Fg-Jdd">
+                                <rect key="frame" x="107" y="360" width="200" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="hOL-Fg-Jdd" secondAttribute="height" multiplier="2:1" id="fsG-4m-hcS"/>
+                                </constraints>
+                                <state key="normal" image="us"/>
+                                <connections>
+                                    <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bDS-Sb-4Uq"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="O3o-74-qQR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="20w-SX-FlX"/>
+                            <constraint firstItem="hOL-Fg-Jdd" firstAttribute="top" secondItem="pKe-6s-TwO" secondAttribute="bottom" constant="30" id="Uzg-e0-Mcw"/>
+                            <constraint firstItem="pKe-6s-TwO" firstAttribute="top" secondItem="O3o-74-qQR" secondAttribute="bottom" constant="30" id="ZhN-7h-vDh"/>
+                            <constraint firstItem="pKe-6s-TwO" firstAttribute="centerX" secondItem="O3o-74-qQR" secondAttribute="centerX" id="cYt-rg-q1j"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="hOL-Fg-Jdd" secondAttribute="bottom" constant="20" id="eew-1B-lzM"/>
+                            <constraint firstItem="pKe-6s-TwO" firstAttribute="height" secondItem="O3o-74-qQR" secondAttribute="height" id="g1w-pp-9X1"/>
+                            <constraint firstItem="hOL-Fg-Jdd" firstAttribute="height" secondItem="pKe-6s-TwO" secondAttribute="height" id="tmV-fv-OAW"/>
+                            <constraint firstItem="O3o-74-qQR" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="vhl-bz-OKG"/>
+                            <constraint firstItem="hOL-Fg-Jdd" firstAttribute="centerX" secondItem="pKe-6s-TwO" secondAttribute="centerX" id="yyg-2k-GjS"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="iQj-Xe-yrs"/>
+                    <connections>
+                        <outlet property="button1" destination="O3o-74-qQR" id="hPl-um-7bk"/>
+                        <outlet property="button2" destination="pKe-6s-TwO" id="XVX-LM-ccI"/>
+                        <outlet property="button3" destination="hOL-Fg-Jdd" id="MWA-1a-nIb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1047.8260869565217" y="126.5625"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="MLu-ZI-LLZ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HCR-d5-YRd" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HFh-Gt-8CQ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="ydS-lw-NU8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aKK-oY-mgh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="126.5625"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="us" width="200" height="100"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
