@@ -33,13 +33,16 @@ func swift_1_Thread(limit: Int) -> Int {
 }
 
 func nIsPrime(n: Int) -> Bool {
+    //let sq = Int(sqrt(Double(n)))
+    let sq = Int(pow(Double(n), 0.5))
     switch n {
     case let x where x < 2:
         return false
     case 2:
         return true
     default:
-        return n % 2 != 0 && !stride(from: 3, through: Int(sqrt(Double(n))), by: 2).contains {n % $0 == 0}
+        return !stride(from: 3, through: sq, by: 2).contains {n % $0 == 0} // No check for n % 2 != 0 as we don't have any even numbers
+        //return n % 2 != 0 && !stride(from: 3, through: Int(sqrt(Double(n))), by: 2).contains {n % $0 == 0}
     }
 }
 
@@ -66,8 +69,7 @@ func prepSearch(limit: Int, threads: Int) -> [[Int]] {
     
     for i in range_sizes {
         max = min + i
-        //vectors.append(Array(min..<max))
-        vectors.append(Array((min..<max).filter { $0 % 2 == 1 })) // Sacar pares de la lista
+        vectors.append(Array((min..<max).filter { $0 % 2 == 1 })) // Add just odd numbers
         min = max
     }
     //print(vectors)
@@ -96,6 +98,6 @@ func swift_n_threads(limit: Int, threads: Int) -> Int {
         semaphore.wait()
     }
     queue.waitUntilAllOperationsAreFinished()
-    
+    //print(result)
     return result.count
 }
