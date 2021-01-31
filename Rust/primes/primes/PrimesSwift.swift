@@ -75,29 +75,60 @@ func prepSearch(limit: Int, threads: Int) -> [[Int]] {
     //print(vectors)
     return vectors
 }
+// funciona bien pero se comporta raro - optimiza con 2 threads
+//func swift_n_threads(limit: Int, threads: Int) -> Int {
+//    var result = [Int]()
+//    let vectors = prepSearch(limit: limit, threads: threads)
+//    result.append(2)  // Manually add 2 as we removed even numbers from list
+//    // Approach #1 - Semaphores & Locks - It works - slower because of locks?
+//    let semaphore = DispatchSemaphore(value: threads)
+//    let queue = OperationQueue()
+//    let lock = NSLock()
+//    for segment in vectors {
+//        queue.addOperation {
+//            for i in segment {
+//                if nIsPrime(n: i) {
+//                    lock.lock()
+//                    result.append(i)
+//                    lock.unlock()
+//                }
+//            }
+//            semaphore.signal()
+//        }
+//        semaphore.wait()
+//    }
+//    queue.waitUntilAllOperationsAreFinished()
+//    //print(result)
+//    return result.count
+//}
 
+// Funciona bien en el device (no en el simulador) y optimiza con 6 threads
 func swift_n_threads(limit: Int, threads: Int) -> Int {
-    var result = [Int]()
+    // Approach #2 - SyncronizedArray and GCD
+    let result = SynchronizedArray<Int>()
     let vectors = prepSearch(limit: limit, threads: threads)
-    result.append(2)
-    // Approach #1 - Semaphores & Locks - It works - slower because of locks?
-    let semaphore = DispatchSemaphore(value: threads)
-    let queue = OperationQueue()
-    let lock = NSLock()
+    result.append(newElement: 2) // Manually add 2 as we removed even numbers from list
+    
+    //let queue = DispatchQueue(label: "com.glella.primes", qos: .userInitiated, attributes: .concurrent, autoreleaseFrequency: .inherit, target: .global())
+    let queue = DispatchQueue(label: "com.glella.primes", qos: .userInitiated ,attributes: .concurrent)
+    let group = DispatchGroup()
     for segment in vectors {
-        queue.addOperation {
+        group.enter()
+        queue.async {
+            //print("Working on segment: \(segment)")
             for i in segment {
                 if nIsPrime(n: i) {
-                    lock.lock()
-                    result.append(i)
-                    lock.unlock()
-                }
-            }
-            semaphore.signal()
-        }
-        semaphore.wait()
-    }
-    queue.waitUntilAllOperationsAreFinished()
-    //print(result)
+                    result.append(newElement: i)
+                    //print("prime: \(i)")
+                } // if
+            } // inner for
+            group.leave()
+        } // queue
+    } // for segment
+    
+//    group.notify(queue: DispatchQueue.main) {
+//        print("finished")
+//    }
+    group.wait()
     return result.count
 }

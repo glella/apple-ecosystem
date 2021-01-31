@@ -12,6 +12,8 @@
 		F7E5AA7725C5ED1C00DC16CF /* PrimesObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E5AA7625C5ED1C00DC16CF /* PrimesObjC.m */; };
 		F7E5AA7C25C5ED5600DC16CF /* PrimesC.c in Sources */ = {isa = PBXBuildFile; fileRef = F7E5AA7B25C5ED5600DC16CF /* PrimesC.c */; };
 		F7E5AA8025C5ED7700DC16CF /* PrimesCpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7E5AA7E25C5ED7700DC16CF /* PrimesCpp.cpp */; };
+		F7E5AA8325C7471800DC16CF /* SyncronizedArray2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E5AA8225C7471800DC16CF /* SyncronizedArray2.swift */; };
+		F7E5AA8725C7488200DC16CF /* SyncronizedArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E5AA8625C7488200DC16CF /* SyncronizedArray.swift */; };
 		F7EB7EF225C27FAF00EE1594 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EB7EF125C27FAF00EE1594 /* AppDelegate.swift */; };
 		F7EB7EF425C27FAF00EE1594 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EB7EF325C27FAF00EE1594 /* SceneDelegate.swift */; };
 		F7EB7EF625C27FAF00EE1594 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EB7EF525C27FAF00EE1594 /* ViewController.swift */; };
@@ -29,6 +31,8 @@
 		F7E5AA7B25C5ED5600DC16CF /* PrimesC.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = PrimesC.c; sourceTree = "<group>"; };
 		F7E5AA7E25C5ED7700DC16CF /* PrimesCpp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PrimesCpp.cpp; sourceTree = "<group>"; };
 		F7E5AA7F25C5ED7700DC16CF /* PrimesCpp.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PrimesCpp.hpp; sourceTree = "<group>"; };
+		F7E5AA8225C7471800DC16CF /* SyncronizedArray2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncronizedArray2.swift; sourceTree = "<group>"; };
+		F7E5AA8625C7488200DC16CF /* SyncronizedArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncronizedArray.swift; sourceTree = "<group>"; };
 		F7EB7EEE25C27FAF00EE1594 /* primes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = primes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7EB7EF125C27FAF00EE1594 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F7EB7EF325C27FAF00EE1594 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +98,8 @@
 				F7E5AA7B25C5ED5600DC16CF /* PrimesC.c */,
 				F7E5AA7E25C5ED7700DC16CF /* PrimesCpp.cpp */,
 				F7E5AA7F25C5ED7700DC16CF /* PrimesCpp.hpp */,
+				F7E5AA8225C7471800DC16CF /* SyncronizedArray2.swift */,
+				F7E5AA8625C7488200DC16CF /* SyncronizedArray.swift */,
 			);
 			path = primes;
 			sourceTree = "<group>";
@@ -175,6 +181,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7E5AA8325C7471800DC16CF /* SyncronizedArray2.swift in Sources */,
+				F7E5AA8725C7488200DC16CF /* SyncronizedArray.swift in Sources */,
 				F7EB7EF625C27FAF00EE1594 /* ViewController.swift in Sources */,
 				F7E5AA7325C5E19C00DC16CF /* PrimesSwift.swift in Sources */,
 				F7E5AA7725C5ED1C00DC16CF /* PrimesObjC.m in Sources */,
@@ -361,7 +369,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/primes/primeslib";
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.glella.primeslib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/guillermolella/Documents/apple-ecosystem/Rust/primes/primes/primeslib/primeslib.h";
