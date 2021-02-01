@@ -75,7 +75,8 @@ func prepSearch(limit: Int, threads: Int) -> [[Int]] {
     //print(vectors)
     return vectors
 }
-// funciona bien pero se comporta raro - optimiza con 2 threads
+// Approach #1 - Semaphores & Locks - Slowest of the solutions
+// Works well but other solution is faster. Optimizes perf with 2 threads
 //func swift_n_threads(limit: Int, threads: Int) -> Int {
 //    var result = [Int]()
 //    let vectors = prepSearch(limit: limit, threads: threads)
@@ -102,33 +103,105 @@ func prepSearch(limit: Int, threads: Int) -> [[Int]] {
 //    return result.count
 //}
 
-// Funciona bien en el device (no en el simulador) y optimiza con 6 threads
+// Approach #2 - SyncronizedArray and GCD. Simplest Array class: SynchronizedArray
+// Works well on device. Optimizes with 6 threads - Fastest
 func swift_n_threads(limit: Int, threads: Int) -> Int {
-    // Approach #2 - SyncronizedArray and GCD
     let result = SynchronizedArray<Int>()
     let vectors = prepSearch(limit: limit, threads: threads)
     result.append(newElement: 2) // Manually add 2 as we removed even numbers from list
-    
-    //let queue = DispatchQueue(label: "com.glella.primes", qos: .userInitiated, attributes: .concurrent, autoreleaseFrequency: .inherit, target: .global())
+
     let queue = DispatchQueue(label: "com.glella.primes", qos: .userInitiated ,attributes: .concurrent)
     let group = DispatchGroup()
     for segment in vectors {
         group.enter()
         queue.async {
-            //print("Working on segment: \(segment)")
             for i in segment {
                 if nIsPrime(n: i) {
                     result.append(newElement: i)
-                    //print("prime: \(i)")
                 } // if
             } // inner for
             group.leave()
         } // queue
     } // for segment
-    
-//    group.notify(queue: DispatchQueue.main) {
-//        print("finished")
-//    }
+
     group.wait()
     return result.count
 }
+
+// Approach #3 - Simpler approach with GCD & NSLocks
+// Simpler but nos as fast as #2
+//func swift_n_threads(limit: Int, threads: Int) -> Int {
+//    var result = [Int]()
+//    let vectors = prepSearch(limit: limit, threads: threads)
+//    result.append(2) // Manually add 2 as we removed even numbers from list
+//
+//    let queue = DispatchQueue(label: "com.glella.primes", qos: .userInitiated ,attributes: .concurrent)
+//    let group = DispatchGroup()
+//    let lock = NSLock()
+//    for segment in vectors {
+//        group.enter()
+//        queue.async {
+//            for i in segment {
+//                if nIsPrime(n: i) {
+//                    lock.lock()
+//                    result.append(i)
+//                    lock.unlock()
+//                } // if
+//            } // inner for
+//            group.leave()
+//        } // queue
+//    } // outer for
+//
+//    group.wait()
+//    return result.count
+//}
+
+// Approach #3 - Trying AtomicArray
+// The more threads the slower it gets - sequential?
+//func swift_n_threads(limit: Int, threads: Int) -> Int {
+//    var result = AtomicArray<Int>()
+//    let vectors = prepSearch(limit: limit, threads: threads)
+//    result.append(2) // Manually add 2 as we removed even numbers from list
+//
+//    let queue = DispatchQueue(label: "com.glella.primes", qos: .userInitiated ,attributes: .concurrent)
+//    let group = DispatchGroup()
+//    for segment in vectors {
+//        group.enter()
+//        queue.async {
+//            for i in segment {
+//                if nIsPrime(n: i) {
+//                    result.append(i)
+//                } // if
+//            } // inner for
+//            group.leave()
+//        } // queue
+//    } // outer for
+//
+//    group.wait()
+//    return result.count
+//}
+
+// Approach #4 - Trying SyncronizedArray2
+// Equivalent to #2 in persormance but a more complex implementation
+//func swift_n_threads(limit: Int, threads: Int) -> Int {
+//    let result = SynchronizedArray2<Int>()
+//    let vectors = prepSearch(limit: limit, threads: threads)
+//    result.append(2) // Manually add 2 as we removed even numbers from list
+//
+//    let queue = DispatchQueue(label: "com.glella.primes", qos: .userInitiated ,attributes: .concurrent)
+//    let group = DispatchGroup()
+//    for segment in vectors {
+//        group.enter()
+//        queue.async {
+//            for i in segment {
+//                if nIsPrime(n: i) {
+//                    result.append(i)
+//                } // if
+//            } // inner for
+//            group.leave()
+//        } // queue
+//    } // outer for
+//
+//    group.wait()
+//    return result.count
+//}

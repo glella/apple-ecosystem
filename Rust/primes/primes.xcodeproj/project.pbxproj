@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F78316DA25C31E9300371D16 /* libprimes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F78316D925C31E9300371D16 /* libprimes.a */; };
+		F7BDB69E25C779F60078D793 /* AtomicArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BDB69D25C779F60078D793 /* AtomicArray.swift */; };
 		F7E5AA7325C5E19C00DC16CF /* PrimesSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E5AA7225C5E19C00DC16CF /* PrimesSwift.swift */; };
 		F7E5AA7725C5ED1C00DC16CF /* PrimesObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E5AA7625C5ED1C00DC16CF /* PrimesObjC.m */; };
 		F7E5AA7C25C5ED5600DC16CF /* PrimesC.c in Sources */ = {isa = PBXBuildFile; fileRef = F7E5AA7B25C5ED5600DC16CF /* PrimesC.c */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		F78316D325C31DC400371D16 /* primeslib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = primeslib.h; sourceTree = "<group>"; };
 		F78316D925C31E9300371D16 /* libprimes.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libprimes.a; sourceTree = "<group>"; };
+		F7BDB69D25C779F60078D793 /* AtomicArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicArray.swift; sourceTree = "<group>"; };
 		F7E5AA7225C5E19C00DC16CF /* PrimesSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimesSwift.swift; sourceTree = "<group>"; };
 		F7E5AA7625C5ED1C00DC16CF /* PrimesObjC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrimesObjC.m; sourceTree = "<group>"; };
 		F7E5AA7A25C5ED5600DC16CF /* PrimesC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrimesC.h; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				F7E5AA7F25C5ED7700DC16CF /* PrimesCpp.hpp */,
 				F7E5AA8225C7471800DC16CF /* SyncronizedArray2.swift */,
 				F7E5AA8625C7488200DC16CF /* SyncronizedArray.swift */,
+				F7BDB69D25C779F60078D793 /* AtomicArray.swift */,
 			);
 			path = primes;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 				F7E5AA8725C7488200DC16CF /* SyncronizedArray.swift in Sources */,
 				F7EB7EF625C27FAF00EE1594 /* ViewController.swift in Sources */,
 				F7E5AA7325C5E19C00DC16CF /* PrimesSwift.swift in Sources */,
+				F7BDB69E25C779F60078D793 /* AtomicArray.swift in Sources */,
 				F7E5AA7725C5ED1C00DC16CF /* PrimesObjC.m in Sources */,
 				F7E5AA7C25C5ED5600DC16CF /* PrimesC.c in Sources */,
 				F7E5AA8025C5ED7700DC16CF /* PrimesCpp.cpp in Sources */,
