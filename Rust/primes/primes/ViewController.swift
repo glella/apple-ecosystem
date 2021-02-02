@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Goprimes
 
 class ViewController: UIViewController {
     
@@ -67,11 +68,6 @@ class ViewController: UIViewController {
     
         displayResults(result: result, start: start, end: end)
         
-//        swift_GCD_Primes(limit: num, completion: { result, end in
-//            self.displayResults(result: result, start: start, end: end)
-//        })
-        //let temp = prepSearch(limit: num, threads: threads)
-        
     }
     
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
@@ -111,6 +107,18 @@ class ViewController: UIViewController {
         displayResults(result: Int(result), start: start, end: end)
     }
     
+    @IBAction func startGoMultipleThreads(_ sender: UIButton) {
+        let text = textField.text ?? ""
+        let num = Int(text) ?? 1
+        let threads = Int(stepper.value)
+        
+        let start = DispatchTime.now() // <<<<<<<<<< Start time
+        let result = GoprimesGoNThreads(num, threads)
+        let end = DispatchTime.now()   // <<<<<<<<<<   End time
+    
+        displayResults(result: result, start: start, end: end)
+    }
+    
     func displayResults(result: Int, start: DispatchTime, end: DispatchTime) {
         let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds // <<<<< Difference in nano seconds (UInt64)
         let timeInterval = Double(nanoTime) / 1_000_000_000 // Technically could overflow for long running tests
@@ -119,26 +127,5 @@ class ViewController: UIViewController {
         timeLabel.text = String(format: "%.3f", timeInterval)
     }
     
-    @objc func swift_GCD(limit: Int) -> Int {
-        var result = [Int]()
-        result.append(2)
-        
-        var isPrime:Bool = true
-        
-        for x in stride(from: 3, through: limit, by: 2) {
-            let sq: Int = Int(sqrt(Double(x)))
-            isPrime = true
-
-            for i in stride(from: 3, through: sq, by: 2) where x % i == 0 {
-                    isPrime = false
-                    break
-            } // inner for
-            if isPrime {
-                result.append(x)
-            } // if
-        } // outer for
-        return result.count
-    }
-
 }
 

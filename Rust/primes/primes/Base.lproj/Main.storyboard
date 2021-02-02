@@ -135,6 +135,14 @@
                                     <action selector="startsObjCSingleThread:" destination="BYZ-38-t0r" eventType="touchUpInside" id="huc-mk-8Ha"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sJv-2Q-9uM">
+                                <rect key="frame" x="247" y="449" width="121" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Go mult Threads"/>
+                                <connections>
+                                    <action selector="startGoMultipleThreads:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ts7-sM-U2Y"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

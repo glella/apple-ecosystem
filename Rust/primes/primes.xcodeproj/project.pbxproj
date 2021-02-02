@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F743F2E225C7D6B700D4A3AE /* goprimes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F743F2E125C7D6B700D4A3AE /* goprimes.framework */; };
 		F78316DA25C31E9300371D16 /* libprimes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F78316D925C31E9300371D16 /* libprimes.a */; };
 		F7BDB69E25C779F60078D793 /* AtomicArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BDB69D25C779F60078D793 /* AtomicArray.swift */; };
 		F7E5AA7325C5E19C00DC16CF /* PrimesSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E5AA7225C5E19C00DC16CF /* PrimesSwift.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F743F2E125C7D6B700D4A3AE /* goprimes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = goprimes.framework; sourceTree = "<group>"; };
 		F78316D325C31DC400371D16 /* primeslib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = primeslib.h; sourceTree = "<group>"; };
 		F78316D925C31E9300371D16 /* libprimes.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libprimes.a; sourceTree = "<group>"; };
 		F7BDB69D25C779F60078D793 /* AtomicArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicArray.swift; sourceTree = "<group>"; };
@@ -50,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F743F2E225C7D6B700D4A3AE /* goprimes.framework in Frameworks */,
 				F78316DA25C31E9300371D16 /* libprimes.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -110,6 +113,7 @@
 		F7EB7F0625C280B600EE1594 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F743F2E125C7D6B700D4A3AE /* goprimes.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -342,6 +346,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2C5BW4MB4V;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = primes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -365,6 +373,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2C5BW4MB4V;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_OPTIMIZATION_LEVEL = fast;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = primes/Info.plist;

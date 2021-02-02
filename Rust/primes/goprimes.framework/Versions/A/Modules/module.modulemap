@@ -1,0 +1,8 @@
+framework module "Goprimes" {
+	header "ref.h"
+    header "Goprimes.objc.h"
+    header "Universe.objc.h"
+    header "Goprimes.h"
+
+    export *
+}
