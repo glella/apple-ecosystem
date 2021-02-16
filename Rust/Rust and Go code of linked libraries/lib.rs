@@ -1,20 +1,25 @@
 // primeslib - lib.rs
 // Library to calculate primes with Rust on iOS and compare it to swift
-// Go and C languages to compare
-// After adding targets to cargo compile with: cargo lipo --release
+// 1 thread & using multiple threads to compare
+//
+// cargo setup (one time):          rustup target add aarch64-apple-ios x86_64-apple-ios
+// check rustup targets installed:  rustup show
+// compile with:                    cargo lipo --release
+// can check fat binay with:        lipo -info libprimes.a 
+// and get:                         Architectures in the fat file: libprimes.a are: x86_64 arm64 
 
 use std::os::raw::{c_int, c_longlong};
 // channels & threads
 use std::thread;
 use std::sync::mpsc;
 
-fn is_prime(n: u64) -> bool {
+fn is_prime(n: u32) -> bool {
     match n {
         0 | 1 => false,
         2 => true,
         _even if n % 2 == 0 => false,
         _ => {
-            let sqrt_limit = (n as f64).sqrt() as u64;
+            let sqrt_limit = (n as f32).sqrt() as u32;
             !(3..=sqrt_limit).step_by(2).any(|i| n % i == 0)
         }
     }
@@ -26,7 +31,7 @@ fn is_prime(n: u64) -> bool {
 pub extern "C" fn rust_1_thread(limit: c_int) -> c_longlong {
     let mut result = Vec::new();
     // units of num?
-    let num = limit as u64;
+    let num = limit as u32;
 
     for i in 1..num {
         if is_prime(i) {
@@ -37,7 +42,7 @@ pub extern "C" fn rust_1_thread(limit: c_int) -> c_longlong {
     result.len() as c_longlong
 }
 
-fn make_range(min: u64, max: u64) -> Vec<u64> {
+fn make_range(min: u32, max: u32) -> Vec<u32> {
 	let mut range = Vec::new();
 	for i in (min..max).filter(|x| x % 2 == 1) { // Add only odd numbers
 		range.push(i);
@@ -46,7 +51,7 @@ fn make_range(min: u64, max: u64) -> Vec<u64> {
 
 }
 
-fn prep_search(n: u64, num_threads: u64) -> Vec<Vec<u64>> {
+fn prep_search(n: u32, num_threads: u32) -> Vec<Vec<u32>> {
 	
 	let range_size = n / num_threads;		// range sized divided evenly
 	let mut reminder = n % num_threads;			// reminder to be spread out
@@ -78,9 +83,9 @@ fn prep_search(n: u64, num_threads: u64) -> Vec<Vec<u64>> {
 	vec_of_vec
 }
 
-fn search(vectors: Vec<Vec<u64>>) -> Vec<u64> {
-	let mut result: Vec<u64> = Vec::new();
-	result.push(2);
+fn search(vectors: Vec<Vec<u32>>) -> Vec<u32> {
+	let mut result: Vec<u32> = Vec::new();
+	result.push(2);                         // Add 2 as we removed even numbers from list
 
 	// Channels - send and receive
 	let (tx, rx) = mpsc::channel();
@@ -94,7 +99,7 @@ fn search(vectors: Vec<Vec<u64>>) -> Vec<u64> {
 
         // Each thread will send its results via the channel
         let child = thread::spawn(move || {
-        	let mut temp: Vec<u64> = Vec::new();
+        	let mut temp: Vec<u32> = Vec::new();
         	for i in segment {
         		if is_prime(i) {
         			temp.push(i);
@@ -123,9 +128,8 @@ fn search(vectors: Vec<Vec<u64>>) -> Vec<u64> {
 
 #[no_mangle]
 pub extern "C" fn rust_n_threads(limit: c_int, threads: c_int) -> c_longlong {
-    // units?
-    let num = limit as u64;
-    let num_threads = threads as u64;
+    let num = limit as u32;
+    let num_threads = threads as u32;
 
     let search_vectors = prep_search(num, num_threads);
 
