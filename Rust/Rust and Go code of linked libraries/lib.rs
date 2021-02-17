@@ -19,8 +19,17 @@ fn is_prime(n: u32) -> bool {
         2 => true,
         _even if n % 2 == 0 => false,
         _ => {
-            let sqrt_limit = (n as f32).sqrt() as u32;
-            !(3..=sqrt_limit).step_by(2).any(|i| n % i == 0)
+            // !(3..).step_by(2).take_while(|i| i*i <= n).any(|i| n % i == 0)
+
+            //Another way: aping C styled for loops 
+            let mut i = 3;
+            while i * i <= n {
+                if n % i == 0 {
+                    return false
+                }
+                i += 2;
+            }
+            return true
         }
     }
 }
@@ -44,7 +53,7 @@ pub extern "C" fn rust_1_thread(limit: c_int) -> c_longlong {
 
 fn make_range(min: u32, max: u32) -> Vec<u32> {
 	let mut range = Vec::new();
-	for i in (min..max).filter(|x| x % 2 == 1) { // Add only odd numbers
+	for i in min..max { //.filter(|x| x % 2 == 1) { // Add only odd numbers
 		range.push(i);
 	}
 	range
@@ -54,7 +63,7 @@ fn make_range(min: u32, max: u32) -> Vec<u32> {
 fn prep_search(n: u32, num_threads: u32) -> Vec<Vec<u32>> {
 	
 	let range_size = n / num_threads;		// range sized divided evenly
-	let mut reminder = n % num_threads;			// reminder to be spread out
+	let mut reminder = n % num_threads;		// reminder to be spread out
 
 	let mut range_sizes_vec = Vec::new();	// vector to hold each range size
 	for _i in 0..num_threads {
@@ -85,7 +94,7 @@ fn prep_search(n: u32, num_threads: u32) -> Vec<Vec<u32>> {
 
 fn search(vectors: Vec<Vec<u32>>) -> Vec<u32> {
 	let mut result: Vec<u32> = Vec::new();
-	result.push(2);                         // Add 2 as we removed even numbers from list
+	//result.push(2);                         // Add 2 as we removed even numbers from list
 
 	// Channels - send and receive
 	let (tx, rx) = mpsc::channel();
