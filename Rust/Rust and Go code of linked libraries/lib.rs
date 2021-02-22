@@ -1,6 +1,5 @@
 // primeslib - lib.rs
-// Library to calculate primes with Rust on iOS and compare it to swift
-// 1 thread & using multiple threads to compare
+// Library to calculate primes with Rust on iOS and compare it to others
 //
 // cargo setup (one time):          rustup target add aarch64-apple-ios x86_64-apple-ios
 // check rustup targets installed:  rustup show
@@ -19,17 +18,17 @@ fn is_prime(n: u32) -> bool {
         2 => true,
         _even if n % 2 == 0 => false,
         _ => {
-            // !(3..).step_by(2).take_while(|i| i*i <= n).any(|i| n % i == 0)
+            !(3..).step_by(2).take_while(|i| i*i <= n).any(|i| n % i == 0)
 
-            //Another way: aping C styled for loops 
-            let mut i = 3;
-            while i * i <= n {
-                if n % i == 0 {
-                    return false
-                }
-                i += 2;
-            }
-            return true
+            // Another way: aping C styled for loops 
+            // let mut i = 3;
+            // while i * i <= n {
+            //     if n % i == 0 {
+            //         return false
+            //     }
+            //     i += 2;
+            // }
+            // return true
         }
     }
 }
@@ -39,7 +38,6 @@ fn is_prime(n: u32) -> bool {
 #[no_mangle]
 pub extern "C" fn rust_1_thread(limit: c_int) -> c_longlong {
     let mut result = Vec::new();
-    // units of num?
     let num = limit as u32;
 
     for i in 1..num {
