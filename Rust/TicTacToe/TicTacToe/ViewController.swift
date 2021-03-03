@@ -72,9 +72,8 @@ class ViewController: UIViewController {
         
         // AI turn - As human is 1st player check if game has not ended before AI's turn or if human has won
         if !board.isEnded() && board.state == .InProgress {
-            // AI random moves x now
-            let AIAction = board.possibleMoves().randomElement()!
-            // both forms below work
+            let AIAction = findBestMove(board: board)
+            // both forms below work to change target button in outlet collection
             //if let button = buttons.filter({ $0.tag == AIAction }).first {
             if let button = buttons.first(where: { $0.tag == AIAction }) {
                 button.setImage(UIImage(named: board.player.image()), for: UIControl.State())

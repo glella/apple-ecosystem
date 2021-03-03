@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F71039FB25EDD7A00019931A /* Minimax.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71039FA25EDD7A00019931A /* Minimax.swift */; };
 		F72DCE2325EBF6E200723346 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72DCE2225EBF6E200723346 /* AppDelegate.swift */; };
 		F72DCE2525EBF6E200723346 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72DCE2425EBF6E200723346 /* SceneDelegate.swift */; };
 		F72DCE2725EBF6E200723346 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72DCE2625EBF6E200723346 /* ViewController.swift */; };
 		F72DCE2A25EBF6E200723346 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F72DCE2825EBF6E200723346 /* Main.storyboard */; };
 		F72DCE2C25EBF6E300723346 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F72DCE2B25EBF6E300723346 /* Assets.xcassets */; };
 		F72DCE2F25EBF6E300723346 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F72DCE2D25EBF6E300723346 /* LaunchScreen.storyboard */; };
-		F72DCE3F25EBFBE100723346 /* libminimax.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F72DCE3E25EBFBE100723346 /* libminimax.a */; };
 		F72DCE4725EC5F2500723346 /* Nought.png in Resources */ = {isa = PBXBuildFile; fileRef = F72DCE4425EC5F2400723346 /* Nought.png */; };
 		F72DCE4825EC5F2500723346 /* Board.png in Resources */ = {isa = PBXBuildFile; fileRef = F72DCE4525EC5F2500723346 /* Board.png */; };
 		F72DCE4925EC5F2500723346 /* Cross.png in Resources */ = {isa = PBXBuildFile; fileRef = F72DCE4625EC5F2500723346 /* Cross.png */; };
@@ -21,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F71039FA25EDD7A00019931A /* Minimax.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Minimax.swift; sourceTree = "<group>"; };
 		F72DCE1F25EBF6E200723346 /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F72DCE2225EBF6E200723346 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F72DCE2425EBF6E200723346 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -29,9 +30,6 @@
 		F72DCE2B25EBF6E300723346 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F72DCE2E25EBF6E300723346 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F72DCE3025EBF6E300723346 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F72DCE3825EBFAD200723346 /* TicTacToe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TicTacToe-Bridging-Header.h"; sourceTree = "<group>"; };
-		F72DCE3925EBFAD300723346 /* minimaxlib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = minimaxlib.h; sourceTree = "<group>"; };
-		F72DCE3E25EBFBE100723346 /* libminimax.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libminimax.a; sourceTree = "<group>"; };
 		F72DCE4425EC5F2400723346 /* Nought.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Nought.png; sourceTree = "<group>"; };
 		F72DCE4525EC5F2500723346 /* Board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Board.png; sourceTree = "<group>"; };
 		F72DCE4625EC5F2500723346 /* Cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cross.png; sourceTree = "<group>"; };
@@ -43,7 +41,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F72DCE3F25EBFBE100723346 /* libminimax.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,7 +51,6 @@
 			isa = PBXGroup;
 			children = (
 				F72DCE4325EC5F0B00723346 /* Assets */,
-				F72DCE3725EBFA5500723346 /* Minimax */,
 				F72DCE2125EBF6E200723346 /* TicTacToe */,
 				F72DCE2025EBF6E200723346 /* Products */,
 			);
@@ -74,23 +70,14 @@
 				F72DCE2225EBF6E200723346 /* AppDelegate.swift */,
 				F72DCE2425EBF6E200723346 /* SceneDelegate.swift */,
 				F72DCE2625EBF6E200723346 /* ViewController.swift */,
+				F72DCE4B25EC785700723346 /* Board.swift */,
+				F71039FA25EDD7A00019931A /* Minimax.swift */,
 				F72DCE2825EBF6E200723346 /* Main.storyboard */,
 				F72DCE2B25EBF6E300723346 /* Assets.xcassets */,
 				F72DCE2D25EBF6E300723346 /* LaunchScreen.storyboard */,
 				F72DCE3025EBF6E300723346 /* Info.plist */,
-				F72DCE4B25EC785700723346 /* Board.swift */,
 			);
 			path = TicTacToe;
-			sourceTree = "<group>";
-		};
-		F72DCE3725EBFA5500723346 /* Minimax */ = {
-			isa = PBXGroup;
-			children = (
-				F72DCE3E25EBFBE100723346 /* libminimax.a */,
-				F72DCE3925EBFAD300723346 /* minimaxlib.h */,
-				F72DCE3825EBFAD200723346 /* TicTacToe-Bridging-Header.h */,
-			);
-			path = Minimax;
 			sourceTree = "<group>";
 		};
 		F72DCE4325EC5F0B00723346 /* Assets */ = {
@@ -110,7 +97,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F72DCE3325EBF6E300723346 /* Build configuration list for PBXNativeTarget "TicTacToe" */;
 			buildPhases = (
-				F72DCE4125EBFCF600723346 /* ShellScript */,
 				F72DCE1B25EBF6E200723346 /* Sources */,
 				F72DCE1C25EBF6E200723346 /* Frameworks */,
 				F72DCE1D25EBF6E200723346 /* Resources */,
@@ -173,26 +159,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		F72DCE4125EBFCF600723346 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path./Users/guillermolella/Documents/Programming/Rust/minimax/automate.sh\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		F72DCE1B25EBF6E200723346 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -201,6 +167,7 @@
 				F72DCE2725EBF6E200723346 /* ViewController.swift in Sources */,
 				F72DCE2325EBF6E200723346 /* AppDelegate.swift in Sources */,
 				F72DCE4C25EC785700723346 /* Board.swift in Sources */,
+				F71039FB25EDD7A00019931A /* Minimax.swift in Sources */,
 				F72DCE2525EBF6E200723346 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -362,7 +329,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.glella.TicTacToe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Minimax/TicTacToe-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -388,7 +355,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.glella.TicTacToe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Minimax/TicTacToe-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
