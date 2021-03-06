@@ -11,6 +11,9 @@ class ViewController: UIViewController {
     
     var board = Board()
     
+    // hmmm
+    //var firstAImove: Bool = true
+    
     // Array of outlets for the buttons so the AI can show its move
     @IBOutlet var buttons: [UIButton]!
     // Outlets for the label and play button
@@ -54,6 +57,9 @@ class ViewController: UIViewController {
         // hide message & button
         label.isHidden = true
         playButton.isHidden = true
+        
+        // hmmmm
+        //firstAImove = true
     }
     
     @IBAction func action(_ sender: UIButton) {
@@ -72,7 +78,18 @@ class ViewController: UIViewController {
         
         // AI turn - As human is 1st player check if game has not ended before AI's turn or if human has won
         if !board.isEnded() && board.state == .InProgress {
+            
+            // hmmm
+//            var AIAction: Int
+//            if firstAImove == true {
+//                AIAction = board.possibleMoves().randomElement()!
+//                firstAImove = false
+//            } else {
+//                AIAction = findBestMove(board: board)
+//            }
+            
             let AIAction = findBestMove(board: board)
+            
             // both forms below work to change target button in outlet collection
             //if let button = buttons.filter({ $0.tag == AIAction }).first {
             if let button = buttons.first(where: { $0.tag == AIAction }) {
