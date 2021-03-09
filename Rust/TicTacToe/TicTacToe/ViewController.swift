@@ -88,7 +88,19 @@ class ViewController: UIViewController {
 //                AIAction = findBestMove(board: board)
 //            }
             
-            let AIAction = findBestMove(board: board)
+            // swift minimax
+            //let AIAction = findBestMove(board: board)
+            
+            // rust minimax
+            //var arrayUInt32 = [UInt32]()
+            //for slot in board.slots {
+            //    arrayUInt32.append(UInt32(slot))
+            //}
+            // better:
+            var arr: [UInt32] = board.slots.map { UInt32($0) }
+            //print(arr)
+            let rustAI = find_best_rust(&arr, arr.count)
+            let AIAction = Int(rustAI)
             
             // both forms below work to change target button in outlet collection
             //if let button = buttons.filter({ $0.tag == AIAction }).first {

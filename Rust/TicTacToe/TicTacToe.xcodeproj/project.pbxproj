@@ -18,6 +18,7 @@
 		F72DCE4825EC5F2500723346 /* Board.png in Resources */ = {isa = PBXBuildFile; fileRef = F72DCE4525EC5F2500723346 /* Board.png */; };
 		F72DCE4925EC5F2500723346 /* Cross.png in Resources */ = {isa = PBXBuildFile; fileRef = F72DCE4625EC5F2500723346 /* Cross.png */; };
 		F72DCE4C25EC785700723346 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72DCE4B25EC785700723346 /* Board.swift */; };
+		F7A048F325F58C2A00A18955 /* libminimax.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A048F225F58C2A00A18955 /* libminimax.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,9 @@
 		F72DCE4525EC5F2500723346 /* Board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Board.png; sourceTree = "<group>"; };
 		F72DCE4625EC5F2500723346 /* Cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cross.png; sourceTree = "<group>"; };
 		F72DCE4B25EC785700723346 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		F7A048E925F58A9700A18955 /* TicTacToe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TicTacToe-Bridging-Header.h"; sourceTree = "<group>"; };
+		F7A048EA25F58A9700A18955 /* minimaxlib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = minimaxlib.h; sourceTree = "<group>"; };
+		F7A048F225F58C2A00A18955 /* libminimax.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libminimax.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7A048F325F58C2A00A18955 /* libminimax.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +55,7 @@
 		F72DCE1625EBF6E200723346 = {
 			isa = PBXGroup;
 			children = (
+				F7A048E825F58A2B00A18955 /* Minimax */,
 				F72DCE4325EC5F0B00723346 /* Assets */,
 				F72DCE2125EBF6E200723346 /* TicTacToe */,
 				F72DCE2025EBF6E200723346 /* Products */,
@@ -90,6 +96,16 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		F7A048E825F58A2B00A18955 /* Minimax */ = {
+			isa = PBXGroup;
+			children = (
+				F7A048F225F58C2A00A18955 /* libminimax.a */,
+				F7A048EA25F58A9700A18955 /* minimaxlib.h */,
+				F7A048E925F58A9700A18955 /* TicTacToe-Bridging-Header.h */,
+			);
+			path = Minimax;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -97,6 +113,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F72DCE3325EBF6E300723346 /* Build configuration list for PBXNativeTarget "TicTacToe" */;
 			buildPhases = (
+				F7A048EF25F58ADE00A18955 /* ShellScript */,
 				F72DCE1B25EBF6E200723346 /* Sources */,
 				F72DCE1C25EBF6E200723346 /* Frameworks */,
 				F72DCE1D25EBF6E200723346 /* Resources */,
@@ -158,6 +175,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F7A048EF25F58ADE00A18955 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "set -e\n# Location of rust project\nRUST_FOLDER=\"/Users/guillermolella/Documents/Programming/Rust/minimax\"\n# Location of the \"Minimax\" folder in the iOS project\nXCODE_FOLDER=\"$PROJECT_DIR/Minimax\"\n# Provide access to Rust utilities\nPATH=\"$PATH:/Users/guillermolella/.cargo/bin\"\n# Rust target lib \nRUST_TARGET=\"/Users/guillermolella/Documents/Programming/Rust/minimax/target/universal/release/libminimax.a\"\n\ncd \"$RUST_FOLDER\"\n# Generate C bindings\ncbindgen src/lib.rs -l c > minimaxlib.h\n# Build for iOS architectures\ncargo lipo --release\n# Copy resources to the iOS folder, overwriting old ones\ncp minimaxlib.h \"$XCODE_FOLDER\"\ncp \"$RUST_TARGET\" \"$XCODE_FOLDER\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F72DCE1B25EBF6E200723346 /* Sources */ = {
@@ -329,7 +366,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.glella.TicTacToe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Minimax/TicTacToe-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -355,7 +392,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.glella.TicTacToe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Minimax/TicTacToe-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
